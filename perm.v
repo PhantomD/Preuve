@@ -67,8 +67,8 @@ Section list_perm.
    assumption. (* Applique IHperm *)
    apply perm_swap.
    apply perm_trans with l2. (* Pour pouvoir utiliser IHperm1 et IHperm2 *) 
-   assumption.
-   assumption.
+   apply IHperm2.
+   apply IHperm1.
   Qed.
 
   Fact perm_middle x l r : x::l++r ~p l++x::r.
@@ -78,7 +78,7 @@ Section list_perm.
     simpl. (* Enlever les nil *)
     apply perm_refl. (* Permet d'enlever un sous but *)
     simpl. (*Permet d'enlever les parenthèses inutiles *)
-    apply perm_trans with (1 := perm_swap _ _ _). (* ???? *)
+    apply perm_trans with (1 := perm_swap _ _ _).
     apply perm_cons.
     apply IHl.
   Qed.
@@ -105,9 +105,49 @@ Section list_perm.
                    | x y l 
                    | l1 l2 l3 H1 IH1 H2 IH2 
                    ].
-   simpl. (* Enlever les nil *)
-        
-  Admitted.
+    (*subgoal 1 *)    
+    simpl . (* Enlever les nil *)
+    intro H3.
+    intro H4.
+    intro H5.
+    apply H5. (* tout ça pour dire que r1 ~p r2 -> r1 ~p r2 *)
+    
+    (*subgoal 2 *)
+    intro .
+    intro .
+    intro.
+    simpl.
+    apply perm_cons.
+    apply IH1.
+    apply H.
+
+    (*subgoal 3 *)
+    intro .
+    intro .
+    intro .
+    simpl.
+    apply perm_trans with (1 := perm_swap _ _ _).
+    apply perm_cons.  
+    apply perm_cons.
+    apply perm_app_left.
+    apply H.
+
+    (*subgoal 4 *)
+    intro .
+    intro .
+    intro .
+    apply perm_trans with (l2 ++ r2).
+    apply IH1.
+    apply H.
+    apply perm_trans with (l3++r1).
+    apply IH2.
+    apply perm_sym.
+    apply H.
+    apply perm_app_left.
+    apply H. (* c'est qui les patrons maintenant ? *)
+    
+Qed.
+
 
   (* incl est défini dans la librairie standard, fichier List.v *)
 
@@ -121,7 +161,19 @@ Section list_perm.
                    | x y l 
                    | l1 l2 l3 H1 IH1 H2 IH2 
                    ]. 
-    
+    (* subgoal 1 *)    
+    intro .
+    intro .
+    apply H.    
+
+    (* subgoal 2 *)
+        
+
+
+(* subgoal 3 *)
+
+(* subgoal 4 *)
+
   
   Qed.
 

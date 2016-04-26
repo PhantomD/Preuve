@@ -98,55 +98,41 @@ Section list_perm.
   Fact perm_app l1 l2 r1 r2 : l1 ~p l2 -> r1 ~p r2 -> l1++r1 ~p l2++r2.
   Proof.
    intros H.
-   revert H r1 r2. (* Rentre les hypothèses dans le goal *)
+   revert H r1 r2. (* Rentre les hypothèses dans le subgoal *)
    intros H.
    induction H as [ 
                    | x l1 l2 H1 IH1 
                    | x y l 
                    | l1 l2 l3 H1 IH1 H2 IH2 
                    ].
-    (*subgoal 1 *)    
     simpl . (* Enlever les nil *)
-    intro H3.
-    intro H4.
-    intro H5.
-    apply H5. (* tout ça pour dire que r1 ~p r2 -> r1 ~p r2 *)
-    
-    (*subgoal 2 *)
-    intro .
-    intro .
-    intro.
+    intros H3 H4 H5.
+    apply H5.  (*Enlever le premier subgoal*)
+    intros H3 H4 H5.
     simpl.
-    apply perm_cons.
+    apply perm_cons. (*Permet d'enlever les x*)
     apply IH1.
-    apply H.
-
-    (*subgoal 3 *)
-    intro .
-    intro .
-    intro .
+    apply H5. (* Enlever le second subgoal *)
+    intros H3 H4 H5.
     simpl.
-    apply perm_trans with (1 := perm_swap _ _ _).
-    apply perm_cons.  
-    apply perm_cons.
+    apply perm_trans with (1 := perm_swap _ _ _). (*Permet de rendre le memvre de gauche 
+    identique à celui de droite*)
+    apply perm_cons. (*enlève y*)  
+    apply perm_cons. (*Enlève x*)
     apply perm_app_left.
-    apply H.
-
+    apply H5. (* Enlève le troisième sous but *)
     (*subgoal 4 *)
-    intro .
-    intro .
-    intro .
-    apply perm_trans with (l2 ++ r2).
+    intros H3 H4 H5.
+    apply perm_trans with (l2 ++ H4). (* Faire le lien entre l1 et l3 *)
     apply IH1.
-    apply H.
-    apply perm_trans with (l3++r1).
+    apply H5.
+    apply perm_trans with (l3++H3).
     apply IH2.
-    apply perm_sym.
-    apply H.
+    apply perm_sym. (* Pour appliquer H5 *)
+    apply H5.
     apply perm_app_left.
-    apply H. (* c'est qui les patrons maintenant ? *)
-    
-Qed.
+    apply H5. (* Résolution du dernier sous but *)
+   Qed.
 
 
   (* incl est défini dans la librairie standard, fichier List.v *)
@@ -160,22 +146,13 @@ Qed.
                    | x l1 l2 H1 IH1 
                    | x y l 
                    | l1 l2 l3 H1 IH1 H2 IH2 
-                   ]. 
-    (* subgoal 1 *)    
-    intro .
-    intro .
-    apply H.    
-
-    (* subgoal 2 *)
-        
-
-
-(* subgoal 3 *)
-
-(* subgoal 4 *)
-
-  
-  Qed.
+                   ].    
+    intros H1 H2.
+    apply H2. (* Résolution du premier sous-but *)        
+    apply incl_cons.
+    apply in_cons. (* Enlève le x :: !!! *)
+    
+  Admitted.
 
 End list_perm.
 

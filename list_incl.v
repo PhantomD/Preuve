@@ -20,22 +20,43 @@ Section list_incl.
   
   Fact incl_left_cons l m x : incl (x::m) l -> In x l /\ incl m l.
   Proof.
-    intros H; split.
-    apply H; left; reflexivity.
-    intros ? ?; apply H; right; assumption.
+    intros H.
+    split.
+    apply H.
+    left.
+    reflexivity.
+    intros ? ?.
+    apply H.
+    right.
+    assumption.
   Qed.
  
   Fact incl_left_app l m k : incl (l++m) k <-> incl l k /\ incl m k.
   Proof.
-    split.  
-    intros H; split; intros ? ?; apply H; apply in_or_app; [ left | right ]; auto.
+    split. (* Divise en deux sous buts *)  
+    intros H.
+    split. (* Divise en deux sous buts *)
+    intros H2 H3.
+    apply H. (* Permet de remplacer k par (l ++ m *)
+    apply in_or_app.
+    left.
+    apply H3. (* Premier sous but résolu *)
+    intros H4 H5.
+    apply H. (*Permet de remplacer k par (l ++m) *)
+    apply in_or_app.
+    right. (* Permet d'appliquer H5 par la suite *)
+    apply H5.
+    intros H1 H2 H3.
+      
   Admitted.
 
   Fact incl_right_nil l : incl l nil -> l = nil.
   Proof.
     intros H.
     destruct l as [ | x l ].
-  Admitted.
+    reflexivity. (* Pour enlever le premier sous but *)
+         
+    Admitted.
 
   Let incl_nil_x l : incl nil l.
   Proof.

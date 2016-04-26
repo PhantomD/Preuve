@@ -1,0 +1,47 @@
+DIGEST 2342bf4294b9cd9ec56b41bc61fcc538
+Flist_ind
+R15:19 Coq.Arith.Arith <> <> lib
+R37:40 Coq.Lists.List <> <> lib
+sec 52:77 <> generalized_list_induction
+var 209:209 generalized_list_induction X
+var 220:220 generalized_list_induction P
+R224:227 Coq.Init.Datatypes <> list ind
+R229:229 list_ind <> generalized_list_induction.X var
+var 259:260 generalized_list_induction HP
+R316:316 list_ind <> generalized_list_induction.P var
+R318:318 list_ind <> l var
+R308:308 list_ind <> generalized_list_induction.P var
+R310:310 list_ind <> m var
+R293:295 Coq.Init.Peano <> :nat_scope:x_'<'_x not
+R285:290 Coq.Init.Datatypes <> length def
+R292:292 list_ind <> m var
+R296:301 Coq.Init.Datatypes <> length def
+R303:303 list_ind <> l var
+var 330:345 generalized_list_induction list_gen_ind_rec
+R377:377 list_ind <> generalized_list_induction.P var
+R379:379 list_ind <> l var
+R369:371 Coq.Init.Peano <> :nat_scope:x_'<'_x not
+R361:366 Coq.Init.Datatypes <> length def
+R368:368 list_ind <> l var
+R372:372 list_ind <> n var
+R466:471 Coq.Arith.Lt <> lt_n_0 thm
+R466:471 Coq.Arith.Lt <> lt_n_0 thm
+R484:485 list_ind <> generalized_list_induction.HP var
+R484:485 list_ind <> generalized_list_induction.HP var
+R530:540 Coq.Arith.Lt <> lt_le_trans thm
+R530:540 Coq.Arith.Lt <> lt_le_trans thm
+R568:573 Coq.Arith.Le <> le_S_n thm
+R568:573 Coq.Arith.Le <> le_S_n thm
+prf 598:609 <> list_gen_ind
+R623:623 list_ind <> generalized_list_induction.P var
+R625:625 list_ind <> l var
+R690:690 Coq.Init.Datatypes <> S constr
+R693:698 Coq.Init.Datatypes <> length def
+R662:677 list_ind <> generalized_list_induction.list_gen_ind_rec var
+R690:690 Coq.Init.Datatypes <> S constr
+R693:698 Coq.Init.Datatypes <> length def
+R662:677 list_ind <> generalized_list_induction.list_gen_ind_rec var
+R715:721 Coq.Arith.Le <> le_refl thm
+R715:721 Coq.Arith.Le <> le_refl thm
+R736:761 list_ind generalized_list_induction <> sec
+R771:782 list_ind <> list_gen_ind thm

@@ -146,13 +146,25 @@ Section list_perm.
                    | x l1 l2 H1 IH1 
                    | x y l 
                    | l1 l2 l3 H1 IH1 H2 IH2 
-                   ].    
-    intros H1 H2.
-    apply H2. (* Résolution du premier sous-but *)        
-    apply incl_cons.
-    apply in_cons. (* Enlève le x :: !!! *)
-    
-  Admitted.
+                   ]. 
+    intros Hyp1 Hyp2 .
+    apply Hyp2.
+    intros Hyp1 Hyp2 .
+    destruct Hyp2. (* *)
+    left. (* Afin de récupérer x = Hyp1 *)
+    apply H.
+    right. (* Afin de récupérer l2 = Hyp1 *)
+    apply IH1. (* Pour pouvoir utiliser H ensuite *)
+    apply H.
+    intros ? ?.
+    revert H.
+    simpl. (* Pour faire fonctionner le tauto *)
+    tauto. (* Pas arrivé à trouver autrement *)
+    revert IH2.
+    revert IH1.
+    apply incl_tran. (* Transitivité sur les listes *)
+  Qed.
+
 
 End list_perm.
 

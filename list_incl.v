@@ -33,8 +33,8 @@ Section list_incl.
  
   Fact incl_left_app l m k : incl (l++m) k <-> incl l k /\ incl m k.
   Proof.
-    split. (* Divise en deux sous buts *)  
-    intros H.
+    split. (* Divise en deux sous buts *)
+    intro H.
     split. (* Divise en deux sous buts *)
     intros H2 H3.
     apply H. (* Permet de remplacer k par (l ++ m *)
@@ -46,17 +46,25 @@ Section list_incl.
     apply in_or_app.
     right. (* Permet d'appliquer H5 par la suite *)
     apply H5.
-    intros H1 H2 H3.
-      
-  Admitted.
-
+    intro H1.
+    destruct H1. (* Dans le but de trouver une forme pour appliquer incl_app *)
+    revert H0.
+    revert H.
+    apply incl_app.
+  Qed.
+  
   Fact incl_right_nil l : incl l nil -> l = nil.
   Proof.
     intros H.
     destruct l as [ | x l ].
     reflexivity. (* Pour enlever le premier sous but *)
-         
-    Admitted.
+    exfalso.
+    
+    
+    
+    
+   
+  Admitted.
 
   Let incl_nil_x l : incl nil l.
   Proof.
@@ -77,12 +85,17 @@ Section list_incl.
     destruct H as (H1 & H2).    
     apply IHm in H2.
     destruct H2 as (m1 & m2 & H3 & H4 & H5).
+    destruct IHm.
+    
+    
+    
   Admitted.
 
   Fact incl_right_cons_split x l m : incl m (x::l) -> exists m1 m2, m ~p m1 ++ m2 /\ (forall a, In a m1 -> a = x) /\ incl m2 l.
   Proof.
     intros H.
     apply (incl_right_app (x::nil) _ l) in H.
+    
   Admitted.
   
   Fact incl_right_cons_choose x l m : incl m (x::l) -> In x m \/ incl m l.
@@ -91,6 +104,8 @@ Section list_incl.
     apply incl_right_cons_split in H.
     destruct H as ( m1 & m2 & H1 & H2 & H3 ); simpl in H1.
     destruct m1 as [ | y m1 ].
+    left.
+    
   Admitted.
 
   Fact list_remove (x : X) l : In x l -> exists m, incl l (x::m) /\ length m < length l.

@@ -18,16 +18,27 @@ Section pigeon.
   Proof.
     intros H.
     induction H as [ x l H | x l H IH ]; simpl.
+    
   Admitted.
 
   Fact lhd_app_right l m : lhd m -> lhd (l++m).
   Proof.
     induction l.
+    intros H1.
+    apply H1. (* Supprimer le premier sous but *)
+    intro H1.
+    apply IHl in H1.
+    simpl.
+    
+    
   Admitted.
 
   Fact lhd_app x l m : In x l -> In x m -> lhd (l++m).
   Proof.
-    induction l as [ | y l IHl ]; simpl.
+    induction l as [ | y l IHl ].
+    intro H1.
+    intro H2.
+    
   Admitted.
  
   Fact lhd_cons_inv x l : lhd (x::l) -> In x l \/ lhd l.

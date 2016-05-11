@@ -58,13 +58,10 @@ Section list_incl.
     intros H.
     destruct l as [ | x l ].
     reflexivity. (* Pour enlever le premier sous but *)
-    exfalso.
-    
-    
-    
-    
-   
-  Admitted.
+    apply incl_left_cons in H.
+    destruct H as (H1 & H2).
+    destruct H1. (*Afin de résoudre la preuve *)
+  Qed.
 
   Let incl_nil_x l : incl nil l.
   Proof.

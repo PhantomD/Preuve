@@ -18,17 +18,50 @@ Section pigeon.
   Proof.
     intros H.
     induction H as [ x l H | x l H IH ]; simpl.
-  Admitted.
+    left.
+    apply in_or_app.
+    left.
+    apply H.
+    right.
+    apply IH.
+  Qed.
 
   Fact lhd_app_right l m : lhd m -> lhd (l++m).
   Proof.
     induction l.
-  Admitted.
+    intros H1.
+    apply H1. (* Supprimer le premier sous but *)
+    intro H1.
+    apply IHl in H1.
+    simpl.
+    right.
+    apply H1.
+  Qed.
 
   Fact lhd_app x l m : In x l -> In x m -> lhd (l++m).
   Proof.
-    induction l as [ | y l IHl ]; simpl.
-  Admitted.
+    induction l as [ | y l IHl ].
+    simpl.
+    intro H1.
+    intro H2.
+    contradict H1.
+
+    intros ? ?.
+
+    apply in_inv in H.
+    destruct H.
+    left.
+
+    subst x.
+    apply in_or_app.
+    right.
+    apply H0.
+
+    right.
+    apply IHl.
+    apply H.
+    apply H0.
+  Qed.
  
   Fact lhd_cons_inv x l : lhd (x::l) -> In x l \/ lhd l.
   Proof.
@@ -101,23 +134,44 @@ Section pigeon.
     intros H.
     apply lhd_cons_inv in H; destruct H as [ H | H ].
     
-    admit.
-    admit.
+    left.
+    apply perm_incl in H1.
+    apply H1.
+    apply H.
+
+    right.
+    apply IH1.
+    apply H.
+
     
     intros H.
     apply lhd_cons_inv in H.
     destruct H as [ [ H | H ] | H ]; subst.
+
+    induction l.
+    left.
+    left.
+    reflexivity.
     
-    admit.
-    admit.
+    left.
+    left.
+    reflexivity.
+
+    right.
+    left.
+    apply H.
 
     apply lhd_cons_inv in H.
     destruct H as [ H | H ].
-    
-    admit.
-    admit.
-   
-  Admitted.
+
+    left.
+    right.
+    apply H.
+
+    right.
+    right.
+    apply H.
+  Qed.
   
   Fact In_perm_head (x : X) l : In x l -> exists m, l ~p x::m.
   Proof.

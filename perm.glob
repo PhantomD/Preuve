@@ -1,173 +1,183 @@
-DIGEST 870cda79e0f213bbb32527bd4ab53164
+DIGEST f386b0bbd79f93489d341dfd0755aefa
 Fperm
-R112:115 Coq.Lists.List <> <> lib
-sec 265:273 <> list_perm
-var 288:288 list_perm X
-ind 311:314 <> perm
-constr 353:360 <> perm_nil
-constr 403:411 <> perm_cons
-constr 504:512 <> perm_swap
-constr 558:567 <> perm_trans
-R328:331 Coq.Init.Datatypes <> list ind
-R333:333 perm <> list_perm.X var
-R318:321 Coq.Init.Datatypes <> list ind
-R323:323 perm <> list_perm.X var
-R723:726 perm <> perm ind
-R388:391 perm list_perm ::x_'~p'_x not
-R385:387 Coq.Init.Datatypes <> nil constr
-R392:394 Coq.Init.Datatypes <> nil constr
-R487:490 perm list_perm ::x_'~p'_x not
-R483:484 Coq.Init.Datatypes <> :list_scope:x_'::'_x not
-R482:482 perm <> x var
-R485:486 perm <> l1 var
-R492:493 Coq.Init.Datatypes <> :list_scope:x_'::'_x not
-R491:491 perm <> x var
-R494:495 perm <> l2 var
-R438:441 perm list_perm ::x_'~p'_x not
-R436:437 perm <> l1 var
-R442:443 perm <> l2 var
-R539:542 perm list_perm ::x_'~p'_x not
-R533:534 Coq.Init.Datatypes <> :list_scope:x_'::'_x not
-R532:532 perm <> x var
-R536:537 Coq.Init.Datatypes <> :list_scope:x_'::'_x not
-R535:535 perm <> y var
-R538:538 perm <> l var
-R544:545 Coq.Init.Datatypes <> :list_scope:x_'::'_x not
-R543:543 perm <> y var
-R547:548 Coq.Init.Datatypes <> :list_scope:x_'::'_x not
-R546:546 perm <> x var
-R549:549 perm <> l var
-R691:694 perm list_perm ::x_'~p'_x not
-R689:690 perm <> l1 var
-R695:696 perm <> l3 var
-R642:645 perm list_perm ::x_'~p'_x not
-R640:641 perm <> l2 var
-R646:647 perm <> l3 var
-R593:596 perm list_perm ::x_'~p'_x not
-R591:592 perm <> l1 var
-R597:598 perm <> l2 var
-R723:726 perm <> perm ind
-not 707 list_perm ::x_'~p'_x
-prf 742:750 <> perm_refl
-R757:760 perm list_perm ::x_'~p'_x not
-R756:756 perm <> l var
-R761:761 perm <> l var
-R878:885 perm <> perm_nil constr
-R878:885 perm <> perm_nil constr
-R935:943 perm <> perm_cons constr
-R935:943 perm <> perm_cons constr
-prf 1061:1071 <> perm_length
-R1102:1104 Coq.Init.Logic <> :type_scope:x_'='_x not
-R1093:1098 Coq.Init.Datatypes <> length def
-R1100:1101 perm <> l1 var
-R1105:1110 Coq.Init.Datatypes <> length def
-R1112:1113 perm <> l2 var
-R1083:1086 perm list_perm ::x_'~p'_x not
-R1081:1082 perm <> l1 var
-R1087:1088 perm <> l2 var
-R1593:1602 Coq.Init.Logic <> refl_equal syndef
-R1593:1602 Coq.Init.Logic <> refl_equal syndef
-R1922:1931 Coq.Init.Logic <> refl_equal syndef
-R1922:1931 Coq.Init.Logic <> refl_equal syndef
-R1970:1975 Coq.Init.Datatypes <> length def
-R1970:1975 Coq.Init.Datatypes <> length def
-prf 2055:2062 <> perm_sym
-R2086:2089 perm list_perm ::x_'~p'_x not
-R2084:2085 perm <> l2 var
-R2090:2091 perm <> l1 var
-R2074:2077 perm list_perm ::x_'~p'_x not
-R2072:2073 perm <> l1 var
-R2078:2079 perm <> l2 var
-R2177:2184 perm <> perm_nil constr
-R2177:2184 perm <> perm_nil constr
-R2196:2204 perm <> perm_cons constr
-R2196:2204 perm <> perm_cons constr
-R2253:2261 perm <> perm_swap constr
-R2253:2261 perm <> perm_swap constr
-R2273:2282 perm <> perm_trans constr
-R2273:2282 perm <> perm_trans constr
-prf 2392:2402 <> perm_middle
-R2419:2422 perm list_perm ::x_'~p'_x not
-R2413:2414 Coq.Init.Datatypes <> :list_scope:x_'::'_x not
-R2412:2412 perm <> x var
-R2416:2417 Coq.Init.Datatypes <> :list_scope:x_'++'_x not
-R2415:2415 perm <> l var
-R2418:2418 perm <> r var
-R2424:2425 Coq.Init.Datatypes <> :list_scope:x_'++'_x not
-R2423:2423 perm <> l var
-R2427:2428 Coq.Init.Datatypes <> :list_scope:x_'::'_x not
-R2426:2426 perm <> x var
-R2429:2429 perm <> r var
-R2599:2607 perm <> perm_refl thm
-R2599:2607 perm <> perm_refl thm
-R2736:2744 perm <> perm_swap constr
-R2714:2723 perm <> perm_trans constr
-R2736:2744 perm <> perm_swap constr
-R2714:2723 perm <> perm_trans constr
-R2764:2772 perm <> perm_cons constr
-R2764:2772 perm <> perm_cons constr
-var 2804:2816 list_perm perm_app_left
-R2845:2848 perm list_perm ::x_'~p'_x not
-R2841:2842 Coq.Init.Datatypes <> :list_scope:x_'++'_x not
-R2840:2840 perm <> l var
-R2843:2844 perm <> r1 var
-R2850:2851 Coq.Init.Datatypes <> :list_scope:x_'++'_x not
-R2849:2849 perm <> l var
-R2852:2853 perm <> r2 var
-R2830:2833 perm list_perm ::x_'~p'_x not
-R2828:2829 perm <> r1 var
-R2834:2835 perm <> r2 var
-R3064:3072 perm <> perm_cons constr
-R3064:3072 perm <> perm_cons constr
-prf 3105:3112 <> perm_app
-R3158:3161 perm list_perm ::x_'~p'_x not
-R3154:3155 Coq.Init.Datatypes <> :list_scope:x_'++'_x not
-R3152:3153 perm <> l1 var
-R3156:3157 perm <> r1 var
-R3164:3165 Coq.Init.Datatypes <> :list_scope:x_'++'_x not
-R3162:3163 perm <> l2 var
-R3166:3167 perm <> r2 var
-R3142:3145 perm list_perm ::x_'~p'_x not
-R3140:3141 perm <> r1 var
-R3146:3147 perm <> r2 var
-R3130:3133 perm list_perm ::x_'~p'_x not
-R3128:3129 perm <> l1 var
-R3134:3135 perm <> l2 var
-R3565:3573 perm <> perm_cons constr
-R3565:3573 perm <> perm_cons constr
-R3728:3736 perm <> perm_swap constr
-R3706:3715 perm <> perm_trans constr
-R3728:3736 perm <> perm_swap constr
-R3706:3715 perm <> perm_trans constr
-R3831:3839 perm <> perm_cons constr
-R3831:3839 perm <> perm_cons constr
-R3868:3876 perm <> perm_cons constr
-R3868:3876 perm <> perm_cons constr
-R3903:3915 perm <> list_perm.perm_app_left var
-R3903:3915 perm <> list_perm.perm_app_left var
-R4038:4041 Coq.Init.Datatypes <> :list_scope:x_'++'_x not
-R4019:4028 perm <> perm_trans constr
-R4038:4041 Coq.Init.Datatypes <> :list_scope:x_'++'_x not
-R4019:4028 perm <> perm_trans constr
-R4140:4141 Coq.Init.Datatypes <> :list_scope:x_'++'_x not
-R4121:4130 perm <> perm_trans constr
-R4140:4141 Coq.Init.Datatypes <> :list_scope:x_'++'_x not
-R4121:4130 perm <> perm_trans constr
-R4172:4179 perm <> perm_sym thm
-R4172:4179 perm <> perm_sym thm
-R4230:4242 perm <> list_perm.perm_app_left var
-R4230:4242 perm <> list_perm.perm_app_left var
-prf 4398:4406 <> perm_incl
-R4424:4427 Coq.Lists.List <> incl def
-R4431:4431 perm <> m var
-R4429:4429 perm <> l var
-R4415:4418 perm list_perm ::x_'~p'_x not
-R4414:4414 perm <> l var
-R4419:4419 perm <> m var
-R4703:4711 Coq.Lists.List <> incl_cons thm
-R4703:4711 Coq.Lists.List <> incl_cons thm
-R4724:4730 Coq.Lists.List <> in_cons thm
-R4724:4730 Coq.Lists.List <> in_cons thm
-R4781:4789 perm list_perm <> sec
-R4808:4811 perm <> perm ind
-not 4799 <> ::x_'~p'_x
+R118:121 Coq.Lists.List <> <> lib
+sec 275:283 <> list_perm
+var 300:300 list_perm X
+ind 325:328 <> perm
+constr 369:376 <> perm_nil
+constr 421:429 <> perm_cons
+constr 525:533 <> perm_swap
+constr 581:590 <> perm_trans
+R338:341 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R348:351 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R342:345 Coq.Init.Datatypes <> list ind
+R347:347 perm <> list_perm.X var
+R332:335 Coq.Init.Datatypes <> list ind
+R337:337 perm <> list_perm.X var
+R750:753 perm <> perm ind
+R404:407 perm list_perm ::x_'~p'_x not
+R401:403 Coq.Init.Datatypes <> nil constr
+R408:410 Coq.Init.Datatypes <> nil constr
+R462:500 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R506:509 perm list_perm ::x_'~p'_x not
+R502:503 Coq.Init.Datatypes <> :list_scope:x_'::'_x not
+R501:501 perm <> x var
+R504:505 perm <> l1 var
+R511:512 Coq.Init.Datatypes <> :list_scope:x_'::'_x not
+R510:510 perm <> x var
+R513:514 perm <> l2 var
+R456:459 perm list_perm ::x_'~p'_x not
+R454:455 perm <> l1 var
+R460:461 perm <> l2 var
+R560:563 perm list_perm ::x_'~p'_x not
+R554:555 Coq.Init.Datatypes <> :list_scope:x_'::'_x not
+R553:553 perm <> x var
+R557:558 Coq.Init.Datatypes <> :list_scope:x_'::'_x not
+R556:556 perm <> y var
+R559:559 perm <> l var
+R565:566 Coq.Init.Datatypes <> :list_scope:x_'::'_x not
+R564:564 perm <> y var
+R568:569 Coq.Init.Datatypes <> :list_scope:x_'::'_x not
+R567:567 perm <> x var
+R570:570 perm <> l var
+R622:663 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R672:713 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R716:719 perm list_perm ::x_'~p'_x not
+R714:715 perm <> l1 var
+R720:721 perm <> l3 var
+R666:669 perm list_perm ::x_'~p'_x not
+R664:665 perm <> l2 var
+R670:671 perm <> l3 var
+R616:619 perm list_perm ::x_'~p'_x not
+R614:615 perm <> l1 var
+R620:621 perm <> l2 var
+R750:753 perm <> perm ind
+not 734:734 list_perm ::x_'~p'_x
+prf 771:779 <> perm_refl
+R786:789 perm list_perm ::x_'~p'_x not
+R785:785 perm <> l var
+R790:790 perm <> l var
+R911:918 perm <> perm_nil constr
+R911:918 perm <> perm_nil constr
+R969:977 perm <> perm_cons constr
+R969:977 perm <> perm_cons constr
+prf 1099:1109 <> perm_length
+R1127:1130 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R1140:1142 Coq.Init.Logic <> :type_scope:x_'='_x not
+R1131:1136 Coq.Init.Datatypes <> length def
+R1138:1139 perm <> l1 var
+R1143:1148 Coq.Init.Datatypes <> length def
+R1150:1151 perm <> l2 var
+R1121:1124 perm list_perm ::x_'~p'_x not
+R1119:1120 perm <> l1 var
+R1125:1126 perm <> l2 var
+R1641:1650 Coq.Init.Logic <> refl_equal syndef
+R1641:1650 Coq.Init.Logic <> refl_equal syndef
+R1976:1985 Coq.Init.Logic <> refl_equal syndef
+R1976:1985 Coq.Init.Logic <> refl_equal syndef
+R2025:2030 Coq.Init.Datatypes <> length def
+R2025:2030 Coq.Init.Datatypes <> length def
+prf 2115:2122 <> perm_sym
+R2140:2143 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R2146:2149 perm list_perm ::x_'~p'_x not
+R2144:2145 perm <> l2 var
+R2150:2151 perm <> l1 var
+R2134:2137 perm list_perm ::x_'~p'_x not
+R2132:2133 perm <> l1 var
+R2138:2139 perm <> l2 var
+R2241:2248 perm <> perm_nil constr
+R2241:2248 perm <> perm_nil constr
+R2261:2269 perm <> perm_cons constr
+R2261:2269 perm <> perm_cons constr
+R2320:2328 perm <> perm_swap constr
+R2320:2328 perm <> perm_swap constr
+R2341:2350 perm <> perm_trans constr
+R2341:2350 perm <> perm_trans constr
+prf 2465:2475 <> perm_middle
+R2492:2495 perm list_perm ::x_'~p'_x not
+R2486:2487 Coq.Init.Datatypes <> :list_scope:x_'::'_x not
+R2485:2485 perm <> x var
+R2489:2490 Coq.Init.Datatypes <> :list_scope:x_'++'_x not
+R2488:2488 perm <> l var
+R2491:2491 perm <> r var
+R2497:2498 Coq.Init.Datatypes <> :list_scope:x_'++'_x not
+R2496:2496 perm <> l var
+R2500:2501 Coq.Init.Datatypes <> :list_scope:x_'::'_x not
+R2499:2499 perm <> x var
+R2502:2502 perm <> r var
+R2677:2685 perm <> perm_refl thm
+R2677:2685 perm <> perm_refl thm
+R2816:2824 perm <> perm_swap constr
+R2794:2803 perm <> perm_trans constr
+R2816:2824 perm <> perm_swap constr
+R2794:2803 perm <> perm_trans constr
+R2845:2853 perm <> perm_cons constr
+R2845:2853 perm <> perm_cons constr
+var 2889:2901 list_perm perm_app_left
+R2921:2924 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R2930:2933 perm list_perm ::x_'~p'_x not
+R2926:2927 Coq.Init.Datatypes <> :list_scope:x_'++'_x not
+R2925:2925 perm <> l var
+R2928:2929 perm <> r1 var
+R2935:2936 Coq.Init.Datatypes <> :list_scope:x_'++'_x not
+R2934:2934 perm <> l var
+R2937:2938 perm <> r2 var
+R2915:2918 perm list_perm ::x_'~p'_x not
+R2913:2914 perm <> r1 var
+R2919:2920 perm <> r2 var
+R3157:3165 perm <> perm_cons constr
+R3157:3165 perm <> perm_cons constr
+prf 3202:3209 <> perm_app
+R3233:3236 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R3245:3248 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R3255:3258 perm list_perm ::x_'~p'_x not
+R3251:3252 Coq.Init.Datatypes <> :list_scope:x_'++'_x not
+R3249:3250 perm <> l1 var
+R3253:3254 perm <> r1 var
+R3261:3262 Coq.Init.Datatypes <> :list_scope:x_'++'_x not
+R3259:3260 perm <> l2 var
+R3263:3264 perm <> r2 var
+R3239:3242 perm list_perm ::x_'~p'_x not
+R3237:3238 perm <> r1 var
+R3243:3244 perm <> r2 var
+R3227:3230 perm list_perm ::x_'~p'_x not
+R3225:3226 perm <> l1 var
+R3231:3232 perm <> l2 var
+R3677:3685 perm <> perm_cons constr
+R3677:3685 perm <> perm_cons constr
+R3845:3853 perm <> perm_swap constr
+R3823:3832 perm <> perm_trans constr
+R3845:3853 perm <> perm_swap constr
+R3823:3832 perm <> perm_trans constr
+R3950:3958 perm <> perm_cons constr
+R3950:3958 perm <> perm_cons constr
+R3988:3996 perm <> perm_cons constr
+R3988:3996 perm <> perm_cons constr
+R4024:4036 perm <> list_perm.perm_app_left var
+R4024:4036 perm <> list_perm.perm_app_left var
+R4163:4166 Coq.Init.Datatypes <> :list_scope:x_'++'_x not
+R4144:4153 perm <> perm_trans constr
+R4163:4166 Coq.Init.Datatypes <> :list_scope:x_'++'_x not
+R4144:4153 perm <> perm_trans constr
+R4268:4269 Coq.Init.Datatypes <> :list_scope:x_'++'_x not
+R4249:4258 perm <> perm_trans constr
+R4268:4269 Coq.Init.Datatypes <> :list_scope:x_'++'_x not
+R4249:4258 perm <> perm_trans constr
+R4302:4309 perm <> perm_sym thm
+R4302:4309 perm <> perm_sym thm
+R4362:4374 perm <> list_perm.perm_app_left var
+R4362:4374 perm <> list_perm.perm_app_left var
+R4523:4526 Coq.Lists.List <> incl def
+prf 4539:4547 <> perm_incl
+R4561:4564 Coq.Init.Logic <> :type_scope:x_'->'_x not
+R4565:4568 Coq.Lists.List <> incl def
+R4572:4572 perm <> m var
+R4570:4570 perm <> l var
+R4556:4559 perm list_perm ::x_'~p'_x not
+R4555:4555 perm <> l var
+R4560:4560 perm <> m var
+R5205:5213 Coq.Lists.List <> incl_tran thm
+R5205:5213 Coq.Lists.List <> incl_tran thm
+R5268:5276 perm list_perm <> sec
+R5297:5300 perm <> perm ind
+not 5288:5288 <> ::x_'~p'_x

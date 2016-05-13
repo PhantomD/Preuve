@@ -1,7 +1,7 @@
 Require Import Arith.
 Require Import List.
-
-Require Import perm list_ind.
+Require Import perm.
+Require Import list_ind.
 Require Import list_incl.
 
 Section pigeon.
@@ -265,12 +265,17 @@ Section pigeon.
     destruct H6 as [ H6 | H6 ].
     
     (* and either lhd m' *)
-    
-    admit.
+    left.
+    apply perm_lhd in H4.
+    right.
+    apply H4.
+    right.
+    apply H6.  
+    admit.  
     
     (* or m' ~p l', which leads to y::m ~p x::l *)
-    
-    admit.
+        
+  
     
     (* two checks that the induction hypothesis can be used *)
     

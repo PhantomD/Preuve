@@ -7,7 +7,7 @@
 Require Import List.  (* https://coq.inria.fr/distrib/current/stdlib/Coq.Lists.List.html *)
 Require Import Arith. (* https://coq.inria.fr/distrib/current/stdlib/Coq.Arith.Arith_base.html *)
 
-Require Import perm.
+Load perm.
 
 Section list_incl.
 
@@ -63,6 +63,7 @@ Section list_incl.
     
     
     
+    
    
   Admitted.
 
@@ -86,10 +87,17 @@ Section list_incl.
     apply IHm in H2.
     destruct H2 as (m1 & m2 & H3 & H4 & H5).
     destruct IHm.
+    Admitted.
+    (* 
+        easy peasy: m incl (l++p)
+                  incl m1 l
+                  incl m2 p
+                  m ~p m1 ++ m2
+    *)
+                  
     
     
     
-  Admitted.
 
   Fact incl_right_cons_split x l m : incl m (x::l) -> exists m1 m2, m ~p m1 ++ m2 /\ (forall a, In a m1 -> a = x) /\ incl m2 l.
   Proof.
@@ -104,9 +112,19 @@ Section list_incl.
     apply incl_right_cons_split in H.
     destruct H as ( m1 & m2 & H1 & H2 & H3 ); simpl in H1.
     destruct m1 as [ | y m1 ].
-    left.
     
-  Admitted.
+    right.
+    simpl in H1.
+    apply perm_incl in H1.    
+    revert H3.
+    revert H1.
+    apply incl_tran.
+    apply perm_incl in H1.
+    right.
+    simpl in H1.
+    simpl in H2.
+
+    Admitted.
 
   Fact list_remove (x : X) l : In x l -> exists m, incl l (x::m) /\ length m < length l.
   Proof.

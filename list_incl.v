@@ -83,6 +83,7 @@ Section list_incl.
     apply IHm in H2.
     destruct H2 as (m1 & m2 & H3 & H4 & H5).
     destruct IHm.
+    
      
     
   Admitted.
@@ -92,6 +93,7 @@ Section list_incl.
     intros H.
     apply (incl_right_app (x::nil) _ l) in H.
     
+    
   Admitted.
   
   Fact incl_right_cons_choose x l m : incl m (x::l) -> In x m \/ incl m l.
@@ -100,7 +102,17 @@ Section list_incl.
     apply incl_right_cons_split in H.
     destruct H as ( m1 & m2 & H1 & H2 & H3 ); simpl in H1.
     destruct m1 as [ | y m1 ].
-    left.
+    right.
+    simpl in H1.
+    apply perm_incl in H1.
+    revert H3.
+    revert H1.
+
+    apply incl_tran.
+    right.
+    apply perm_incl in H1.
+    
+    simpl in H1.
     
   Admitted.
 

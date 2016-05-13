@@ -83,8 +83,7 @@ Section list_incl.
     apply IHm in H2.
     destruct H2 as (m1 & m2 & H3 & H4 & H5).
     destruct IHm.
-    
-    
+     
     
   Admitted.
 

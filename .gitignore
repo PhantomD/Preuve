@@ -1,0 +1,5 @@
+*.aux
+list_incl.vo
+*.glob
+perm.vo
+*.glob

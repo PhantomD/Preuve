@@ -20,49 +20,38 @@ Section list_incl.
   
   Fact incl_left_cons l m x : incl (x::m) l -> In x l /\ incl m l.
   Proof.
-    intros H.
-    split.
-    apply H.
-    left.
-    reflexivity.
-    intros ? ?.
-    apply H.
-    right.
-    assumption.
+    intros H; split.
+    apply H; left; reflexivity.
+    intros ? ?; apply H; right; assumption.
   Qed.
  
   Fact incl_left_app l m k : incl (l++m) k <-> incl l k /\ incl m k.
   Proof.
-    split. (* Divise en deux sous buts *)  
-    intros H.
-    split. (* Divise en deux sous buts *)
-    intros H2 H3.
-    apply H. (* Permet de remplacer k par (l ++ m *)
-    apply in_or_app.
-    left.
-    apply H3. (* Premier sous but résolu *)
-    intros H4 H5.
-    apply H. (*Permet de remplacer k par (l ++m) *)
-    apply in_or_app.
-    right. (* Permet d'appliquer H5 par la suite *)
-    apply H5.
-    intros H1 H2 H3.
-      
-  Admitted.
+    split.  
+    intros H; split; intros ? ?; apply H; apply in_or_app; [ left | right ]; auto.
+    intros ?.
+    
+    destruct H.
+    SearchPattern (incl _  _ ).
+    apply incl_app; assumption.
+  Qed.
+
 
   Fact incl_right_nil l : incl l nil -> l = nil.
   Proof.
     intros H.
     destruct l as [ | x l ].
-    reflexivity. (* Pour enlever le premier sous but *)
-         
-    Admitted.
+    reflexivity.
+    apply incl_left_cons in H. 
+    destruct H as (H1 & H2).
+    destruct H1.
+  Qed.
 
   Let incl_nil_x l : incl nil l.
   Proof.
     intros ? [].
   Qed.
- 
+
   Fact incl_right_app l m p : incl m (l++p) -> exists m1 m2, m ~p m1++m2 /\ incl m1 l /\ incl m2 p.
   Proof.
     induction m as [ | x m IHm ].
@@ -77,12 +66,92 @@ Section list_incl.
     destruct H as (H1 & H2).    
     apply IHm in H2.
     destruct H2 as (m1 & m2 & H3 & H4 & H5).
+
+    exists (x :: m1),m2.
+    split.
+    
+    simpl.
+    apply perm_cons.
+    apply H3.
+
+    split.
+
+    apply incl_cons.
+
+    apply in_app_or in H1.
+    destruct H1 as [H1 | H2].
+    
+    apply H1.
+    
+    apply H4.
+
+    apply perm_incl in H3.
+
+    admit.
+
+    apply H4.
+    apply H5.
   Admitted.
+
+
+
 
   Fact incl_right_cons_split x l m : incl m (x::l) -> exists m1 m2, m ~p m1 ++ m2 /\ (forall a, In a m1 -> a = x) /\ incl m2 l.
   Proof.
     intros H.
     apply (incl_right_app (x::nil) _ l) in H.
+    destruct H. destruct H. destruct H.
+    destruct H0.
+    
+    exists x0, x1.
+    split.
+    apply H.
+    split.
+
+    intros ? ?.
+
+    apply perm_incl in H.
+    apply incl_cons with(l:=nil) in H2.
+    apply incl_tran with(l:=a::nil) in H0.
+
+    apply incl_left_cons in H0.
+    destruct H0.
+    induction H0.
+    subst.
+    trivial.
+    exfalso.
+    apply H0.
+
+    apply H2.
+
+    apply incl_nil_x.
+
+    apply H1.
+  Qed.
+
+
+
+
+  Fact incl_right_cons_split x l m : incl m (x::l) -> exists m1 m2, m ~p m1 ++ m2 /\ (forall a, In a m1 -> a = x) /\ incl m2 l.
+  Proof.
+    intros H.
+    apply (incl_right_app (x::nil) _ l) in H.
+
+
+
+
+    exists nil,m.
+    simpl.
+    split.
+    apply perm_refl.
+    split.
+    intros ? ?.
+    apply sym_equal.
+    destruct H0.
+
+    apply perm_incl in H3.
+
+admit.
   Admitted.
   
   Fact incl_right_cons_choose x l m : incl m (x::l) -> In x m \/ incl m l.
@@ -91,6 +160,15 @@ Section list_incl.
     apply incl_right_cons_split in H.
     destruct H as ( m1 & m2 & H1 & H2 & H3 ); simpl in H1.
     destruct m1 as [ | y m1 ].
+
+
+    right.
+   (* apply incl_tran with (m2).*)
+    induction H1.
+    apply incl_nil_x.
+    
+    intros ? ?.
+
   Admitted.
 
   Fact list_remove (x : X) l : In x l -> exists m, incl l (x::m) /\ length m < length l.

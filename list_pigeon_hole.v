@@ -229,7 +229,12 @@ Section pigeon.
 
     (* case l -> nil *)
     
-    admit.
+    intros ? ? ?.
+
+    right.
+    apply incl_right_nil in H0.
+    subst m.
+    apply perm_nil.
     
     intros [ | y m ] H1 H2.
     
@@ -254,15 +259,24 @@ Section pigeon.
     
     (* case x = y & In x m *)
     
-    admit.
+    left.
+    left.
+    apply H4.
+    
     
     (* case x = y & incl m l *)
  
     destruct IHl with (3 := H4).
     simpl; apply lt_n_Sn.
     assumption.
-    admit.
-    admit.
+
+    left.
+    right.
+    apply H.
+
+    right.
+    apply perm_cons.
+    apply H.
     
     (* case In y l *)
     
@@ -272,12 +286,23 @@ Section pigeon.
     (* case In y l and incl m l *)
     
     destruct IHl with (3 := H4) as [ H5 | H5 ]; auto.
-    admit.
-    admit.
     
+    left.
+    right.
+    apply H5.
+    
+    left.
+    left.
+    apply perm_sym in H5.
+    apply perm_incl in H5.
+    apply H5.
+    apply H3.
+
     (* case In y l and lhd m *)
     
-    admit.
+    left.
+    right.
+    apply H4.
     
     (* case In y l and m ~p x::m' and incl m' l *)
     
@@ -298,7 +323,12 @@ Section pigeon.
     
     (* subcase In y m' *)
     
-    admit.
+    left.
+    left.
+    apply perm_incl in H4.
+    apply H4.
+    right.
+    apply H6.
     
     (* subcase incl m' l' *)
 
@@ -309,14 +339,27 @@ Section pigeon.
     
     (* and either lhd m' *)
     
-    admit.
+    left.
+    apply perm_lhd in H4.
+   
+    right.
+    apply H4.
+    right.
+    apply H6.
     
     (* or m' ~p l', which leads to y::m ~p x::l *)
-    
-    admit.
-    
+    right.
+    apply perm_trans with (l).
+    apply perm_sym in Hl'.
+    apply perm_incl in Hl'.
+    apply perm Hl'.
+
+    left.
+    left.
+
     (* two checks that the induction hypothesis can be used *)
     
+
     apply perm_length in Hl'.
     simpl in Hl' |- *.
     rewrite Hl'.

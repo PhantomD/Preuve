@@ -199,9 +199,17 @@ Section list_perm.
     
     (* subgoal 3 *)
     intros ? ?.
-    revert H.
-    simpl.
-    tauto. (** ! TODO **)
+    destruct H.
+    right.
+    left.
+    apply H.
+
+    destruct H.
+    left.
+    apply H.
+    right.
+    right.
+    apply H.
 
     (* subgoal 4 *)
     revert IH2.

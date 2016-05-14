@@ -153,27 +153,6 @@ Section list_incl.
     apply H0.
 Qed.
   
-  Fact incl_right_cons_choose x l m : incl m (x::l) -> In x m \/ incl m l.
-  Proof.
-    intros H.
-    apply incl_right_cons_split in H.
-    destruct H as ( m1 & m2 & H1 & H2 & H3 ); simpl in H1.
-    destruct m1 as [ | y m1 ].
-    right.
-    simpl in H1.
-    apply perm_incl in H1.
-    revert H3.
-    revert H1.
-
-    apply incl_tran.
-    right.
-    apply perm_incl in H1.
-    
-    simpl in H1.
-    
-  Admitted.
-
-(*
 
   Fact incl_right_cons_choose x l m : incl m (x::l) -> In x m \/ incl m l.
   Proof.
@@ -185,14 +164,11 @@ Qed.
     right.
     simpl in H1.
     apply perm_incl in H1.    
-    revert H3.
-    revert H1.
+    revert H1 H3.
     apply incl_tran.
-    apply perm_incl in H1.
-    right.
-    simpl in H1.
-    simpl in H2.
-*)
+    (*tuez-moi pls*)
+Admitted.
+
 
   Fact list_remove (x : X) l : In x l -> exists m, incl l (x::m) /\ length m < length l.
   Proof.

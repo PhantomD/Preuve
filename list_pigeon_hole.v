@@ -346,13 +346,24 @@ Section pigeon.
     (* or m' ~p l', which leads to y::m ~p x::l *)
     (*partie gauche improuvable *)
     right.
+    move Hl' after m'.
+
     apply perm_sym in H4.
-    revert H4 H6.
+    apply perm_cons with(x:=y) in H4.
+    apply perm_cons with(x:=x) in H6.
+    apply perm_cons with(x:=y) in H6.
+    apply perm_cons with(x:=x) in Hl'.
+    apply perm_sym in Hl'.
+    apply perm_trans with(l2:=x::y::l')(l1:=y::x::l') in Hl' . 
+  (*on passe par la transitivité pour pouvoir faire le swap x y qu'on prouvera après *)
+    apply perm_trans with(l1:=y::m) in H6.
+    apply perm_trans with(l1:=y::m) in Hl'.
+    (*on résoud bitches *)
 
-    apply perm_trans (l2:=x::m').
-    induction H6.      
-
-    admit.
+    apply Hl'.
+    apply H6.
+    apply H4.
+    apply perm_swap.
     
     (* two checks that the induction hypothesis can be used *)
     

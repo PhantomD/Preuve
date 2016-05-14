@@ -1,9 +1,8 @@
 Require Import Arith.
 Require Import List.
-Require Import perm.
-Require Import list_ind.
-Require Import list_incl.
 
+Require Import perm list_ind.
+Require Import list_incl.
 Section pigeon.
 
   Variable (X : Type).
@@ -18,8 +17,13 @@ Section pigeon.
   Proof.
     intros H.
     induction H as [ x l H | x l H IH ]; simpl.
-    
-  Admitted.
+    left.
+    apply in_or_app. (*Afin d'intégrer un ou pour faire left ensuite*)
+    left.
+    apply H.
+    right.
+    apply IH.
+  Qed.
 
   Fact lhd_app_right l m : lhd m -> lhd (l++m).
   Proof.
@@ -29,21 +33,39 @@ Section pigeon.
     intro H1.
     apply IHl in H1.
     simpl.
-    
-    
-  Admitted.
+    right.
+    apply H1.
+  Qed.
 
   Fact lhd_app x l m : In x l -> In x m -> lhd (l++m).
   Proof.
     induction l as [ | y l IHl ].
     intro H1.
     intro H2.
+    contradict H1. (*Utilisable lorsque l'hypothèse est fausse*)
     
-  Admitted.
+    intros ? ?.
+    
+    apply in_inv in H. (*Trouvé dans la doc list*)
+    destruct H.
+    simpl.
+    left.
+
+    subst. (*Substituer y à x !*)
+    apply in_or_app.
+    right.
+    apply H0.
+    simpl.
+
+    right.
+    apply IHl.
+    apply H.
+    apply H0.
+   Qed.
  
   Fact lhd_cons_inv x l : lhd (x::l) -> In x l \/ lhd l.
   Proof.
-    inversion_clear 1; auto.
+    inversion_clear 1;auto.
   Qed.
 
   (* these are the equivalent characterizations *)
@@ -112,23 +134,44 @@ Section pigeon.
     intros H.
     apply lhd_cons_inv in H; destruct H as [ H | H ].
     
-    admit.
-    admit.
+    left.
+    apply perm_incl in H1. (*Transformer la permutation afin quelle soit utilisable par la suite*)
+    apply H1.
+    apply H.
     
+    right.
+    apply IH1.
+    apply H.
+
     intros H.
     apply lhd_cons_inv in H.
-    destruct H as [ [ H | H ] | H ]; subst.
-    
-    admit.
-    admit.
+    destruct H as [[ H | H] | H];subst.
+   
+    induction l.
+    left.
+    left.
+    reflexivity.
 
+    left.
+    left.
+    reflexivity.
+
+    right.
+    left.
+    apply H.
+    
     apply lhd_cons_inv in H.
     destruct H as [ H | H ].
+
+    left.
+    right.
+    apply H.
+
+    right.
+    right.
+    apply H.
     
-    admit.
-    admit.
-   
-  Admitted.
+  Qed.
   
   Fact In_perm_head (x : X) l : In x l -> exists m, l ~p x::m.
   Proof.
@@ -185,9 +228,12 @@ Section pigeon.
     induction l as [ [ | x l ] IHl ] using list_gen_ind.
 
     (* case l -> nil *)
-    
-    admit.
-    
+    intros ? ? ?.
+    right.
+    apply incl_right_nil in H0.
+    subst. (*Remplace m par nil dans le sous but*)
+    apply perm_nil.
+       
     intros [ | y m ] H1 H2.
     
     (* case l -> x::l and m -> nil *)
@@ -211,15 +257,24 @@ Section pigeon.
     
     (* case x = y & In x m *)
     
-    admit.
+    left.
+    left.
+    apply H4.
+
+        
     
     (* case x = y & incl m l *)
  
     destruct IHl with (3 := H4).
     simpl; apply lt_n_Sn.
     assumption.
-    admit.
-    admit.
+    left.
+    right.
+    apply H.
+    right.
+    apply perm_cons.
+    apply H.
+    
     
     (* case In y l *)
     
@@ -229,18 +284,26 @@ Section pigeon.
     (* case In y l and incl m l *)
     
     destruct IHl with (3 := H4) as [ H5 | H5 ]; auto.
-    admit.
-    admit.
-    
+    left;right;apply H5.
+    left.
+    left.
+    apply perm_sym in H5.
+    apply perm_incl in H5.
+    apply H5.
+    apply H3.
+       
     (* case In y l and lhd m *)
     
-    admit.
-    
+    left.
+    right.
+    apply H4.
+
     (* case In y l and m ~p x::m' and incl m' l *)
     
     apply perm_sym in H4.
     apply In_perm_head in H3.
     destruct H3 as (l' & Hl').
+    
     
     (* l ~p y::l' for some l' *)
 
@@ -255,7 +318,12 @@ Section pigeon.
     
     (* subcase In y m' *)
     
-    admit.
+    left.
+    left.
+    apply perm_incl in H4. (*Transformation en inclusion de H4*)
+    apply H4.
+    right.
+    apply H6.
     
     (* subcase incl m' l' *)
 
@@ -265,17 +333,26 @@ Section pigeon.
     destruct H6 as [ H6 | H6 ].
     
     (* and either lhd m' *)
+    
     left.
-    apply perm_lhd in H4.
+    apply perm_lhd in H4. (*A permis de me débloquer*)
     right.
     apply H4.
     right.
-    apply H6.  
-    admit.  
+    apply H6.
+     
+    
     
     (* or m' ~p l', which leads to y::m ~p x::l *)
-        
-  
+    (*partie gauche improuvable *)
+    right.
+    apply perm_sym in H4.
+    revert H4 H6.
+
+    apply perm_trans (l2:=x::m').
+    induction H6.      
+
+    admit.
     
     (* two checks that the induction hypothesis can be used *)
     
@@ -289,7 +366,7 @@ Section pigeon.
     simpl in H4, Hl'.
     apply le_S_n.
     rewrite <- Hl', H4; auto.
-  Admitted.
+  Qed.
 
   (* if l is strictly shorter that m but m has all its elements in l 
      then some element of m must be repeated *)
@@ -304,3 +381,4 @@ Section pigeon.
   Qed.
 
 End pigeon.
+

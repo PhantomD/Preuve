@@ -1,8 +1,9 @@
 Require Import Arith.
 Require Import List.
 
-Require Import perm list_ind.
-Require Import list_incl.
+Load perm.
+Load list_ind.
+Load list_incl.
 Section pigeon.
 
   Variable (X : Type).

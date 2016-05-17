@@ -8,7 +8,7 @@
 Require Import List.  (* https://coq.inria.fr/distrib/current/stdlib/Coq.Lists.List.html *)
 Require Import Arith. (* https://coq.inria.fr/distrib/current/stdlib/Coq.Arith.Arith_base.html *)
 
-Require Import perm.
+Load perm.
 
 Section list_incl.
 
@@ -72,6 +72,7 @@ Section list_incl.
 
   Fact incl_right_app l m p : incl m (l++p) -> exists m1 m2, m ~p m1++m2 /\ incl m1 l /\ incl m2 p.
   Proof.
+    
     induction m as [ | x m IHm ].
 
     exists nil, nil; simpl; repeat split.
@@ -79,12 +80,15 @@ Section list_incl.
     apply incl_nil_x.
     apply incl_nil_x.
 
+
     intros H.
     apply incl_left_cons in H. 
     destruct H as (H1 & H2).    
     apply IHm in H2.
     destruct H2 as (m1 & m2 & H3 & H4 & H5).
     destruct IHm.
+
+
     apply perm_incl in H3.
     apply incl_appl with(m:=p) in H4.
     apply incl_appr with(m:=l) in H5.
@@ -93,22 +97,50 @@ Section list_incl.
     apply H4.
     apply H3.
     apply H5.
+
+    apply incl_appl with(m:=p) in H4.
+    apply incl_appr with(m:=l) in H5.
+    apply incl_app with(l:=m1) (m:=m2) (n:=l++p) in H4.
+    apply incl_cons with(a:=x) in H4.
     
-    induction H.
-    exists (x::x0).
-    exists x1.
+    exists (x::m1).
+    exists m2.
     split.
-    destruct H.
-    destruct H0.
+    
+    destruct m2.
     simpl.
-    apply perm_cons.
-    apply H.
-    destruct H.
-    destruct H0.
-    split.
-    apply incl_cons with(a:=x) in H0 . (*balekouy frère*)
-    apply H0.
+    apply perm_cons with(x:=x) in H3.
+    apply H3.
+
+    apply perm_cons with(x:=x) in H3.
+    apply H3.
     
+    split.
+    apply incl_left_app with(l:=x::m1) in H4.
+    destruct H4.
+    destruct p.
+    apply app_nil_r with(l:=l) in H0.
+    
+    destruct H.
+    
+    destruct H.
+    destruct H.
+    destruct H4.
+    destruct p.
+
+    apply perm_sym in H3.
+    apply perm_incl in H3.
+    apply incl_left_app in H3.
+    destruct H3.
+    apply incl_right_nil in H3.
+    subst.
+    apply in_app_or in H1.
+    simpl in H1.
+    trivial.
+    apply in_right_nil in H1.
+    apply incl_appl with(m:=l) in H2.
+    apply H0.
+
 
 
 
@@ -166,8 +198,16 @@ Qed.
     apply perm_incl in H1.    
     revert H1 H3.
     apply incl_tran.
-    (*tuez-moi pls*)
-Admitted.
+    apply Forall_forall in H2.
+    apply Forall_inv in H2.
+    subst.
+    apply perm_sym in H1.
+    apply perm_incl in H1.
+    apply incl_left_cons in H1.
+    destruct H1.
+    left.
+    apply H.
+Qed.
 
 
   Fact list_remove (x : X) l : In x l -> exists m, incl l (x::m) /\ length m < length l.
@@ -177,6 +217,7 @@ Admitted.
     intros [ ? | H ].
 
     subst.
+
     exists l.
     split.
     apply incl_refl.

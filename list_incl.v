@@ -98,53 +98,39 @@ Section list_incl.
     apply H3.
     apply H5.
 
-    apply incl_appl with(m:=p) in H4.
-    apply incl_appr with(m:=l) in H5.
-    apply incl_app with(l:=m1) (m:=m2) (n:=l++p) in H4.
-    apply incl_cons with(a:=x) in H4.
-    
-    exists (x::m1).
-    exists m2.
-    split.
-    
-    destruct m2.
-    simpl.
-    apply perm_cons with(x:=x) in H3.
-    apply H3.
+    destruct H.
+    destruct H.
+    destruct H0.
 
-    apply perm_cons with(x:=x) in H3.
-    apply H3.
-    
-    split.
-    apply incl_left_app with(l:=x::m1) in H4.
-    destruct H4.
-    destruct p.
-    apply app_nil_r with(l:=l) in H0.
-    
-    destruct H.
-    
-    destruct H.
-    destruct H.
-    destruct H4.
-    destruct p.
-
-    apply perm_sym in H3.
-    apply perm_incl in H3.
-    apply incl_left_app in H3.
-    destruct H3.
-    apply incl_right_nil in H3.
-    subst.
     apply in_app_or in H1.
-    simpl in H1.
-    trivial.
-    apply in_right_nil in H1.
-    apply incl_appl with(m:=l) in H2.
+    destruct H1.
+    
+    exists (x::x0).
+    exists (x1).
+    split.
+    apply perm_cons with(x:=x) in H.
+    apply H.
+    split.
+
+  apply incl_cons with(a:=x) in H0.
     apply H0.
+    apply H1.
+    apply H2.
+    
 
-
-
-
-    Admitted. 
+    exists (x0).
+    exists (x::x1).
+    split.
+    apply perm_cons with(x:=x) in H.
+    apply perm_trans with(l2:=(x::x0++x1)) (l3:= (x0++x::x1)) in H.
+    apply H.
+    apply perm_middle.
+    split.
+    apply H0.
+    apply incl_cons with(a:=x) in H2.
+    apply H2.
+    apply H1.
+Qed. 
   
   Fact incl_right_cons_split x l m : incl m (x::l) -> exists m1 m2, m ~p m1 ++ m2 /\ (forall a, In a m1 -> a = x) /\ incl m2 l.
   Proof.
